@@ -1,0 +1,146 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Bond Bridge 연결",
+        "description": "팬은 Bond Bridge를 통해 무선으로 제어합니다. 공식 Bond 통합은 필요하지 않습니다.",
+        "data": {
+          "host": "IP 주소 또는 호스트 이름",
+          "access_token": "로컬 토큰"
+        },
+        "data_description": {
+          "host": "공유기에서 브리지의 IP를 고정해 두세요. 주소가 바뀌면 팬 제어가 멈춥니다.",
+          "access_token": "Bond 앱 > 브리지 > Advanced Settings > Local Token. 이미 등록한 브리지라면 비워 두어도 됩니다. 그 밖에는 비워 두면 브리지에서 가져오기를 시도하며, 브리지 전원을 켠 뒤 10분 안에만 가능합니다."
+        }
+      },
+      "method": {
+        "title": "리모컨 등록",
+        "description": "통합에는 리모컨의 ID가 필요합니다. 리모컨에서 직접 읽어 오는 방법을 권장합니다.",
+        "menu_options": {
+          "learn": "리모컨에서 학습",
+          "manual": "값을 직접 입력"
+        }
+      },
+      "learn": {
+        "title": "리모컨 학습 (1/2)",
+        "description": "리모컨을 Bond Bridge에서 30cm쯤 떨어뜨려 두세요. 다음 화면으로 넘어간 뒤 리모컨의 **회전종료** 버튼을 **한 번** 누르세요. 약 30초 안에 눌러야 합니다.\n\n누른 신호는 팬에도 전달됩니다. 팬이 꺼져 있다면 회전종료는 팬 상태를 바꾸지 않습니다.",
+        "data": {
+          "frequency_khz": "스캔 주파수"
+        },
+        "data_description": {
+          "frequency_khz": "기본값 447885kHz에서 신호가 잡히지 않을 때만 바꾸세요."
+        }
+      },
+      "learn_again": {
+        "title": "리모컨 학습 (2/2)",
+        "description": "첫 번째 신호를 받았습니다. 다음 화면으로 넘어간 뒤 같은 버튼을 **한 번 더** 누르세요.\n\n두 신호를 비교해 이 리모컨이 통합이 아는 방식으로 동작하는지 확인합니다."
+      },
+      "finish": {
+        "title": "리모컨 확인 완료",
+        "description": "리모컨 ID `{remote_id}`, 체크섬 상수 {constant}.\n\n리모컨 ID는 공개하지 마세요. 이 값을 아는 사람은 전파가 닿는 거리에서 팬을 조작할 수 있습니다.",
+        "data": {
+          "name": "이름"
+        }
+      },
+      "manual": {
+        "title": "리모컨 값 직접 입력",
+        "description": "리모컨의 ID와 체크섬 상수를 이미 알고 있을 때 사용합니다.",
+        "data": {
+          "name": "이름",
+          "remote_id": "리모컨 ID",
+          "checksum_constant": "체크섬 상수",
+          "frequency_khz": "주파수"
+        },
+        "data_description": {
+          "remote_id": "16진수 5자리 또는 2진수 20자리.",
+          "checksum_constant": "이 통합을 개발할 때 쓴 리모컨에서는 8이었습니다."
+        }
+      },
+      "reconfigure": {
+        "title": "Bond Bridge 연결 설정",
+        "description": "브리지의 주소나 토큰이 바뀌었을 때 사용합니다.",
+        "data": {
+          "host": "IP 주소 또는 호스트 이름",
+          "access_token": "로컬 토큰"
+        },
+        "data_description": {
+          "access_token": "비워 두면 기존 토큰을 유지합니다."
+        }
+      }
+    },
+    "progress": {
+      "capture": "Bond Bridge가 신호를 기다리고 있습니다. 지금 리모컨 버튼을 한 번 누르세요."
+    },
+    "error": {
+      "cannot_connect": "Bond Bridge에 연결할 수 없습니다. 주소를 확인하세요.",
+      "not_bond": "이 주소의 기기가 Bond Bridge처럼 응답하지 않습니다.",
+      "invalid_auth": "토큰이 올바르지 않습니다.",
+      "token_locked": "토큰을 가져올 수 없습니다. Bond 앱에서 로컬 토큰을 확인해 입력하거나, 브리지 전원을 껐다 켠 뒤 10분 안에 다시 시도하세요.",
+      "no_signal": "신호를 받지 못했습니다. 리모컨을 Bond Bridge에서 30cm쯤 두고 다시 시도하세요.",
+      "no_frame": "신호는 잡혔지만 읽을 수 없었습니다. 버튼을 짧게 한 번만 누르고, 거리를 조금 바꿔 다시 시도하세요.",
+      "capture_failed": "스캔에 실패했습니다. 자세한 내용은 로그를 확인하세요.",
+      "id_mismatch": "두 신호가 서로 다른 리모컨에서 왔습니다. 다른 리모컨의 신호가 섞였을 수 있습니다. 처음부터 다시 시도하세요.",
+      "same_counter": "두 신호의 카운터가 같습니다. 매번 버튼을 정확히 한 번씩만 눌러 처음부터 다시 시도하세요.",
+      "invalid_remote_id": "리모컨 ID는 16진수 5자리 또는 2진수 20자리입니다."
+    },
+    "abort": {
+      "already_configured": "이 리모컨은 이미 등록되어 있습니다.",
+      "reconfigure_successful": "연결 설정을 변경했습니다.",
+      "checksum_mismatch": "지원되지 않는 리모컨입니다. 체크섬이 알려진 식과 맞지 않습니다.\n\n신호 1: {frame_1}\n신호 2: {frame_2}\n\n이 값을 저장소의 이슈로 알려 주세요. 리모컨 ID는 들어 있지 않습니다.",
+      "unknown_button": "지원되지 않는 리모컨입니다. 알 수 없는 버튼 코드가 들어 있어, 버튼 배치가 다른 리모컨으로 보입니다.\n\n신호 1: {frame_1}\n신호 2: {frame_2}\n\n이 값을 저장소의 이슈로 알려 주세요. 리모컨 ID는 들어 있지 않습니다."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "송신 설정",
+        "data": {
+          "frequency_khz": "송신 주파수",
+          "repeats": "반복 횟수"
+        },
+        "data_description": {
+          "frequency_khz": "이 통합을 개발할 때 쓴 팬은 447885kHz에서 동작했습니다.",
+          "repeats": "리모컨은 한 번 누를 때 같은 프레임을 7번 보냅니다."
+        }
+      }
+    }
+  },
+  "entity": {
+    "button": {
+      "all_off": {
+        "name": "전체종료"
+      },
+      "light": {
+        "name": "조명 켜기/끄기"
+      },
+      "timer_1h": {
+        "name": "타이머 1시간"
+      },
+      "timer_2h": {
+        "name": "타이머 2시간"
+      },
+      "timer_4h": {
+        "name": "타이머 4시간"
+      }
+    },
+    "fan": {
+      "fan": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "breeze": "자연풍"
+            }
+          }
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "auth_failed": {
+      "message": "Bond Bridge가 토큰을 거부했습니다. 통합을 재구성하세요."
+    },
+    "transmit_failed": {
+      "message": "Bond Bridge로 송신하지 못했습니다: {error}"
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect the Bond Bridge",
+        "description": "The fan is controlled by radio through a Bond Bridge. The official Bond integration is not needed.",
+        "data": {
+          "host": "IP address or hostname",
+          "access_token": "Local token"
+        },
+        "data_description": {
+          "host": "Give the bridge a fixed address in your router, or the fan stops working when the address changes.",
+          "access_token": "Bond app > bridge > Advanced Settings > Local Token. Leave empty for a bridge that is already set up here. Otherwise an empty field makes the integration ask the bridge, which only answers within 10 minutes of being powered on."
+        }
+      },
+      "method": {
+        "title": "Register the remote",
+        "description": "The integration needs the id of your remote. It can read the id from the remote, which is the recommended way.",
+        "menu_options": {
+          "learn": "Learn from the remote",
+          "manual": "Enter the values by hand"
+        }
+      },
+      "learn": {
+        "title": "Learn the remote (1 of 2)",
+        "description": "Hold the remote about 30 cm from the Bond Bridge. Continue to the next screen, then press the **fan off** button (회전종료) on the remote **once**. You have about 30 seconds.\n\nThe fan receives the press too. If the fan is off, the fan off button changes nothing.",
+        "data": {
+          "frequency_khz": "Scan frequency"
+        },
+        "data_description": {
+          "frequency_khz": "Change this only if no signal is found at the default of 447885 kHz."
+        }
+      },
+      "learn_again": {
+        "title": "Learn the remote (2 of 2)",
+        "description": "The first signal was received. Continue to the next screen, then press the same button **once more**.\n\nThe two signals are compared to check that this remote works the way the integration expects."
+      },
+      "finish": {
+        "title": "Remote recognized",
+        "description": "Remote id `{remote_id}`, checksum constant {constant}.\n\nKeep the remote id to yourself: anyone within radio range who knows it can control the fan.",
+        "data": {
+          "name": "Name"
+        }
+      },
+      "manual": {
+        "title": "Enter the remote values",
+        "description": "Use this if you already know the id and checksum constant of your remote.",
+        "data": {
+          "name": "Name",
+          "remote_id": "Remote id",
+          "checksum_constant": "Checksum constant",
+          "frequency_khz": "Frequency"
+        },
+        "data_description": {
+          "remote_id": "5 hex digits or 20 binary digits.",
+          "checksum_constant": "8 on the remote this integration was developed with."
+        }
+      },
+      "reconfigure": {
+        "title": "Bond Bridge connection",
+        "description": "Use this when the address or the token of the bridge has changed.",
+        "data": {
+          "host": "IP address or hostname",
+          "access_token": "Local token"
+        },
+        "data_description": {
+          "access_token": "Leave empty to keep the current token."
+        }
+      }
+    },
+    "progress": {
+      "capture": "The Bond Bridge is listening. Press the button on the remote once, now."
+    },
+    "error": {
+      "cannot_connect": "Cannot reach the Bond Bridge. Check the address.",
+      "not_bond": "The device at this address does not answer like a Bond Bridge.",
+      "invalid_auth": "The token is not valid.",
+      "token_locked": "The token could not be fetched. Enter the local token from the Bond app, or power the bridge off and on and try again within 10 minutes.",
+      "no_signal": "No signal was received. Hold the remote about 30 cm from the Bond Bridge and try again.",
+      "no_frame": "A signal was received but could not be read. Press the button once, briefly, and try a slightly different distance.",
+      "capture_failed": "The scan failed. See the log for details.",
+      "id_mismatch": "The two signals came from different remotes. Another remote may have been picked up. Start again.",
+      "same_counter": "The two signals carry the same counter. Press the button exactly once each time and start again.",
+      "invalid_remote_id": "The remote id is 5 hex digits or 20 binary digits."
+    },
+    "abort": {
+      "already_configured": "This remote is already set up.",
+      "reconfigure_successful": "The connection settings were updated.",
+      "checksum_mismatch": "This remote is not supported: its checksum does not follow the known formula.\n\nSignal 1: {frame_1}\nSignal 2: {frame_2}\n\nPlease report these values in the repository's issue tracker. They do not include the remote id.",
+      "unknown_button": "This remote is not supported: it sent a button code that is not known, so its buttons are probably laid out differently.\n\nSignal 1: {frame_1}\nSignal 2: {frame_2}\n\nPlease report these values in the repository's issue tracker. They do not include the remote id."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Transmission settings",
+        "data": {
+          "frequency_khz": "Transmit frequency",
+          "repeats": "Repeats"
+        },
+        "data_description": {
+          "frequency_khz": "447885 kHz worked on the fan this integration was developed with.",
+          "repeats": "The remote sends each frame 7 times per press."
+        }
+      }
+    }
+  },
+  "entity": {
+    "button": {
+      "all_off": {
+        "name": "All off"
+      },
+      "light": {
+        "name": "Light toggle"
+      },
+      "timer_1h": {
+        "name": "Timer 1 hour"
+      },
+      "timer_2h": {
+        "name": "Timer 2 hours"
+      },
+      "timer_4h": {
+        "name": "Timer 4 hours"
+      }
+    },
+    "fan": {
+      "fan": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "breeze": "Natural wind"
+            }
+          }
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "auth_failed": {
+      "message": "The Bond Bridge refused the token. Reconfigure the integration."
+    },
+    "transmit_failed": {
+      "message": "Could not transmit through the Bond Bridge: {error}"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "entity": {
+    "button": {
+      "all_off": { "default": "mdi:power" },
+      "light": { "default": "mdi:lightbulb-outline" },
+      "timer_1h": { "default": "mdi:timer-outline" },
+      "timer_2h": { "default": "mdi:timer-outline" },
+      "timer_4h": { "default": "mdi:timer-outline" }
+    },
+    "fan": {
+      "fan": { "default": "mdi:ceiling-fan" }
+    }
+  }
+}

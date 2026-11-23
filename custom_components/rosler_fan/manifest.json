@@ -1,0 +1,14 @@
+{
+  "domain": "rosler_fan",
+  "name": "Rosler Ceiling Fan (Bond Bridge)",
+  "codeowners": [
+    "@btslaurence"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/btslaurence/ha-rosler-fan",
+  "integration_type": "device",
+  "iot_class": "assumed_state",
+  "issue_tracker": "https://github.com/btslaurence/ha-rosler-fan/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}
