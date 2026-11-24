@@ -86,8 +86,8 @@
     "abort": {
       "already_configured": "This remote is already set up.",
       "reconfigure_successful": "The connection settings were updated.",
-      "checksum_mismatch": "This remote is not supported: its checksum does not follow the known formula.\n\nSignal 1: {frame_1}\nSignal 2: {frame_2}\n\nPlease report these values in the repository's issue tracker. They do not include the remote id.",
-      "unknown_button": "This remote is not supported: it sent a button code that is not known, so its buttons are probably laid out differently.\n\nSignal 1: {frame_1}\nSignal 2: {frame_2}\n\nPlease report these values in the repository's issue tracker. They do not include the remote id."
+      "checksum_mismatch": "This remote is not supported: its checksum does not follow the known formula.\n\nSignal 1: {frame_1}\nSignal 2: {frame_2}\n\nThese values do not include the remote id.",
+      "unknown_button": "This remote is not supported: it sent a button code that is not known, so its buttons are probably laid out differently.\n\nSignal 1: {frame_1}\nSignal 2: {frame_2}\n\nThese values do not include the remote id."
     }
   },
   "options": {
